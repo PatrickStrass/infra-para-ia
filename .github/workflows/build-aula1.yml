@@ -3,7 +3,7 @@
 # Roda automaticamente a cada push na main que altere a pasta aula1-containers/
 # (e também manualmente, pela aba Actions -> Run workflow).
 #
-# A imagem fica em: ghcr.io/<dono-do-repo>/sentiment-api:v1
+# A imagem fica em: ghcr.io/<dono-do-repo>/sentiment-api:v3
 # IMPORTANTE: após a primeira execução, torne o pacote público em
 # GitHub -> seu perfil -> Packages -> sentiment-api -> Package settings ->
 # Change visibility -> Public. Sem isso, o `az acr import` dos alunos falha.
@@ -26,17 +26,22 @@ jobs:
       packages: write
     steps:
       - name: Baixar o código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      - name: Set lowercase repository owner
+        run: echo "REPO_OWNER=${OWNER,,}" >> $GITHUB_ENV
+        env:
+          OWNER: "${{ github.repository_owner }}"
 
       - name: Login no GHCR
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build e push da imagem
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: aula1-containers
           push: true
@@ -46,5 +51,5 @@ jobs:
           provenance: false
           sbom: false
           tags: |
-            ghcr.io/${{ github.repository_owner }}/sentiment-api:v1
-            ghcr.io/${{ github.repository_owner }}/sentiment-api:latest
+            ghcr.io/${{ env.REPO_OWNER }}/sentiment-api:v3
+            ghcr.io/${{ env.REPO_OWNER }}/sentiment-api:latest
