@@ -83,6 +83,11 @@ FRASES_POSITIVAS = [
     "as explicações foram claras e objetivas",
     "produto durável e bem construído",
     "fiquei muito contente com o atendimento",
+    "Adorei o atendimento, superou minhas expectativas!"
+    "Produto excelente, entrega muito rápida."
+    "Estou extremamente satisfeito com a compra."
+    "O aplicativo é intuitivo e funciona perfeitamente."
+    "Recomendo de olhos fechados, nota dez!",
 ]
 
 FRASES_NEGATIVAS = [
@@ -146,6 +151,11 @@ FRASES_NEGATIVAS = [
     "as explicações foram vagas e confusas",
     "produto frágil e mal construído",
     "fiquei irritado com o atendimento",
+    "Pior experiência que já tive, nunca mais compro."
+    "Veio com defeito e o suporte não resolve nada."
+    "Atendimento péssimo e muita demora na entrega."
+    "Não vale o preço cobrado, material muito fraco."
+    "Decepcionado, o produto parou de funcionar no primeiro dia.",
 ]
 
 textos = FRASES_POSITIVAS + FRASES_NEGATIVAS
